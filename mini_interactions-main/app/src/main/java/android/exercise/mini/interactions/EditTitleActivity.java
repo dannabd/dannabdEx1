@@ -58,7 +58,8 @@ public class EditTitleActivity extends AppCompatActivity {
       fabEditDone.setVisibility(View.VISIBLE);
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
-      textViewTitle.setText(editTextTitle.getText());
+      editTextTitle.setText(textViewTitle.getText());
+
 
     });
 
@@ -75,6 +76,11 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      fabStartEdit.setVisibility(View.VISIBLE);
+      fabEditDone.setVisibility(View.GONE);
+      textViewTitle.setVisibility(View.VISIBLE);
+      editTextTitle.setVisibility(View.GONE);
+      textViewTitle.setText(editTextTitle.getText());
     });
   }
 
