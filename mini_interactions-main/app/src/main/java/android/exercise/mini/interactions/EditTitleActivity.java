@@ -58,6 +58,7 @@ public class EditTitleActivity extends AppCompatActivity {
       fabEditDone.setVisibility(View.VISIBLE);
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
+      textViewTitle.setText(editTextTitle.getText());
 
     });
 
