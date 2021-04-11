@@ -59,7 +59,7 @@ public class EditTitleActivity extends AppCompatActivity {
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
       editTextTitle.setText(textViewTitle.getText());
-
+SDKS
 
     });
 
