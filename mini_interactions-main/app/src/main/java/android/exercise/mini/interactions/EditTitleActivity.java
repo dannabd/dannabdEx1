@@ -102,21 +102,5 @@ SDKS
     to work with views, you will need to find them first.
     to find views call `findViewById()` in a same way like in `onCreate()`
      */
-
-    // find all views
-    FloatingActionButton fabStartEdit = findViewById(R.id.fab_start_edit);
-    FloatingActionButton fabEditDone = findViewById(R.id.fab_edit_done);
-    TextView textViewTitle = findViewById(R.id.textViewPageTitle);
-    EditText editTextTitle = findViewById(R.id.editTextPageTitle);
-
-    if (fabStartEdit.getVisibility()==View.GONE){//if user is in edit mode
-      fabStartEdit.setVisibility(View.VISIBLE);
-      fabEditDone.setVisibility(View.GONE);
-      textViewTitle.setVisibility(View.VISIBLE);
-      editTextTitle.setVisibility(View.GONE);
-    }
-    else {//if user is not in edit mode
-      super.onBackPressed();
-    }
   }
 }
