@@ -21,6 +21,7 @@ public class EditTitleActivity extends AppCompatActivity {
   // in onCreate() set `this.isEditing` to `true` once the user starts editing, set to `false` once done editing
   // in onBackPressed() check `if(this.isEditing)` to understand what to do
 
+  private boolean isEditing = false;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -54,11 +55,13 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      isEditing = true;
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
       editTextTitle.setText(textViewTitle.getText());
       fabEditDone.setVisibility(View.VISIBLE);
       fabStartEdit.setVisibility(View.GONE);
+
 
 
     });
@@ -76,6 +79,7 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      isEditing = false;
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
       textViewTitle.setText(editTextTitle.getText());
@@ -109,7 +113,8 @@ public class EditTitleActivity extends AppCompatActivity {
     TextView textViewTitle = findViewById(R.id.textViewPageTitle);
     EditText editTextTitle = findViewById(R.id.editTextPageTitle);
 
-    if (fabStartEdit.getVisibility()==View.GONE){//if user is in edit mode
+    if (isEditing){//if user is in edit mode
+      isEditing=false;
       fabStartEdit.setVisibility(View.VISIBLE);
       fabEditDone.setVisibility(View.GONE);
       textViewTitle.setVisibility(View.VISIBLE);
