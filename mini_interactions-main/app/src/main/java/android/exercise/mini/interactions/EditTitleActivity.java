@@ -2,6 +2,7 @@ package android.exercise.mini.interactions;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -59,7 +60,18 @@ public class EditTitleActivity extends AppCompatActivity {
       textViewTitle.setVisibility(View.GONE);
       editTextTitle.setVisibility(View.VISIBLE);
       editTextTitle.setText(textViewTitle.getText());
-      fabEditDone.setVisibility(View.VISIBLE);
+      fabStartEdit.animate()
+              .alpha(0f)
+              .setDuration(300L)
+              .withStartAction(() -> {
+                fabEditDone.animate()
+                        .alpha(1f)
+                        .setDuration(300L)
+                        .start();
+                fabEditDone.setVisibility(View.VISIBLE);
+
+              })
+              .start();
       fabStartEdit.setVisibility(View.GONE);
 
 
@@ -83,7 +95,18 @@ public class EditTitleActivity extends AppCompatActivity {
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
       textViewTitle.setText(editTextTitle.getText());
-      fabStartEdit.setVisibility(View.VISIBLE);
+      fabEditDone.animate()
+              .alpha(0f)
+              .setDuration(300L)
+              .withStartAction(() -> {
+                fabStartEdit.animate()
+                        .alpha(1f)
+                        .setDuration(300L)
+                        .start();
+                fabStartEdit.setVisibility(View.VISIBLE);
+
+              })
+              .start();
       fabEditDone.setVisibility(View.GONE);
     });
   }
@@ -115,8 +138,19 @@ public class EditTitleActivity extends AppCompatActivity {
 
     if (isEditing){//if user is in edit mode
       isEditing=false;
-      fabStartEdit.setVisibility(View.VISIBLE);
       fabEditDone.setVisibility(View.GONE);
+      fabEditDone.setAlpha(0f);
+      fabStartEdit.setVisibility(View.VISIBLE);
+      fabStartEdit.animate()
+              .translationX(-200L)
+              .withEndAction(() -> {
+                fabStartEdit.setAlpha(1f);
+                fabStartEdit.animate()
+                        .translationX(200L)
+                        .setInterpolator(new OvershootInterpolator())
+                        .start();
+              })
+              .start();
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
     }
