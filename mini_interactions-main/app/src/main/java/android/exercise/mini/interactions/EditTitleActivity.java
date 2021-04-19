@@ -142,14 +142,9 @@ public class EditTitleActivity extends AppCompatActivity {
       fabEditDone.setAlpha(0f);
       fabStartEdit.setVisibility(View.VISIBLE);
       fabStartEdit.animate()
-              .translationX(-200L)
-              .withEndAction(() -> {
-                fabStartEdit.setAlpha(1f);
-                fabStartEdit.animate()
-                        .translationX(200L)
-                        .setInterpolator(new OvershootInterpolator())
-                        .start();
-              })
+              .alpha(1f)
+              .setDuration(300L)
+              .setInterpolator(new OvershootInterpolator())
               .start();
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
