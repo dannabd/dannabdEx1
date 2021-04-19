@@ -2,7 +2,6 @@ package android.exercise.mini.interactions;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -138,14 +137,19 @@ public class EditTitleActivity extends AppCompatActivity {
 
     if (isEditing){//if user is in edit mode
       isEditing=false;
-      fabEditDone.setVisibility(View.GONE);
-      fabEditDone.setAlpha(0f);
-      fabStartEdit.setVisibility(View.VISIBLE);
-      fabStartEdit.animate()
-              .alpha(1f)
-              .setDuration(300L)
-              .setInterpolator(new OvershootInterpolator())
+      fabEditDone.animate()
+              .alpha(0f)
+              .setDuration(150L)
+              .withStartAction(() -> {
+                fabStartEdit.animate()
+                        .alpha(1f)
+                        .setDuration(150L)
+                        .start();
+                fabStartEdit.setVisibility(View.VISIBLE);
+
+              })
               .start();
+      fabEditDone.setVisibility(View.GONE);
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
     }
